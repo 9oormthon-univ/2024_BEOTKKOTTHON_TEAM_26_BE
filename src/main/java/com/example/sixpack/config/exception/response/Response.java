@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class Response {
-    private boolean success;
+    private boolean isSuccess;
     private int code;
     private Result result;
 
