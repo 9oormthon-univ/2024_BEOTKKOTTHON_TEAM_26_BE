@@ -1,18 +1,20 @@
 spring:
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/sixpack
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-
   jpa:
+    database: mysql
+    hibernate.ddl-auto: update
+    show-sql: true
     hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        # show_sql: true
-      format_sql: true
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sixpack-db.czckigke2lfn.ap-northeast-2.rds.amazonaws.com:3306/sixpackDB?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: master
+    password: dnjsqls00!!
 
 logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
+
+
+jwt:
+  secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK
