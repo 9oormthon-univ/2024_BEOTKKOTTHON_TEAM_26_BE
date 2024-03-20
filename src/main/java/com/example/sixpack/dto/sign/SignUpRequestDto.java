@@ -22,4 +22,7 @@ public class SignUpRequestDto {
     @Size(min = 2, message = "사용자 이름이 너무 짧습니다.")
     private String name;
 
+    @NotBlank(message = "주소를 입력해주세요")
+    private String my_place;
+
 }

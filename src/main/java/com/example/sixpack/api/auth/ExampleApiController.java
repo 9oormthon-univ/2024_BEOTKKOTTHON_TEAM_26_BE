@@ -1,4 +1,4 @@
-package com.example.sixpack.api.v1;
+package com.example.sixpack.api.auth;
 
 import com.example.sixpack.dto.example.ExampleRequestDto;
 import com.example.sixpack.dto.example.ExampleResponseDto;

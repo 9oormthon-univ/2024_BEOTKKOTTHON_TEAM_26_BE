@@ -31,13 +31,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
-        return (web) -> web.ignoring().
-                requestMatchers("/v3/api-docs", "/swagger-resources/**",
-                        "/swagger-ui.html", "/webjars/**", "/swagger/**");
-    }
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -53,7 +46,7 @@ public class SecurityConfig {
 
                 // 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/api/**").permitAll()
+                        request.requestMatchers("/auth/**").permitAll()
                                 .anyRequest().authenticated()
                 )// 나머지 API 는 전부 인증 필요
 

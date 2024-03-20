@@ -1,4 +1,4 @@
-package com.example.sixpack.api.v1;
+package com.example.sixpack.api.auth;
 
 
 import com.example.sixpack.config.exception.response.Response;
@@ -15,18 +15,18 @@ import static com.example.sixpack.config.exception.response.Response.success;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/auth")
 public class AuthController {
     private final AuthService authService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/sign-up")
+    @PostMapping("/join")
     public Response register(@Valid @RequestBody SignUpRequestDto signUpRequestDto) {
         authService.signup(signUpRequestDto);
         return success();
     }
 
-    @PostMapping("/sign-in")
+    @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public Response signIn(@Valid @RequestBody LoginRequestDto req) {
         return success(authService.signIn(req));
