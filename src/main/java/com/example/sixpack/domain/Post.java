@@ -92,5 +92,6 @@ public class Post {
         this.discount = discount;
         this.fund_people = fund_people;
         this.createdAt = createdAt;
+
     }
 }
