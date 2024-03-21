@@ -5,11 +5,17 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+  sql:
+    init:
+      mode: always
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://sixpack-db.czckigke2lfn.ap-northeast-2.rds.amazonaws.com:3306/sixpackDB?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://sixpack-db.czckigke2lfn.ap-northeast-2.rds.amazonaws.com:3306/sixpackDB?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull
     username: master
     password: dnjsqls00!!
+    data: classpath:db/data.sql
 
 logging.level:
   org.hibernate.SQL: debug

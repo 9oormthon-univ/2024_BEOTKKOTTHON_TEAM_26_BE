@@ -34,7 +34,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Funded_post> fundedPost = new ArrayList<>();
 
 
