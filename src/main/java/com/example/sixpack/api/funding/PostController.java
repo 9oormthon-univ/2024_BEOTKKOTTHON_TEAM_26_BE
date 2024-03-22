@@ -43,4 +43,12 @@ public class PostController {
         return Response.success(postService.searchMyFundedPosts(member_id, page));
     }
 
+
+    //펀딩참여하기페이지
+    @GetMapping("/{post_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response participationFunding(@PathVariable Long post_id){
+        return Response.success(postService.participationFunding(post_id));
+    }
+
 }

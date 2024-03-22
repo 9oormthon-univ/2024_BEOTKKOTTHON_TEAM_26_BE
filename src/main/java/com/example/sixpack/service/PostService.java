@@ -1,8 +1,6 @@
 package com.example.sixpack.service;
 
-import com.example.sixpack.config.exception.exception.BoardNotFoundException;
 import com.example.sixpack.config.exception.exception.PostNotFoundException;
-import com.example.sixpack.domain.Funded_post;
 import com.example.sixpack.domain.Member;
 import com.example.sixpack.domain.Post;
 import com.example.sixpack.dto.post.PageInfoDto;
@@ -55,13 +53,21 @@ public class PostService {
     @Transactional(readOnly = true)
 
     public PostFindAllWithPagingResponseDto searchMyFundedPosts(Long memberId, Integer page) {
-        Member member = memberRepository.findById(memberId).orElseThrow(BoardNotFoundException::new);
+        Member member = memberRepository.findById(memberId).orElseThrow(PostNotFoundException::new);
         PageRequest pageRequest = PageRequest.of(page, 10, Sort.by("id").descending());
         Page<Post> posts = postRepository.findAllByFundedPostMemberId(memberId, pageRequest);
         List<PostFindAllResponseDto> postDtos = posts.getContent().stream()
                 .map(PostFindAllResponseDto::toDto)
                 .collect(toList());
         return PostFindAllWithPagingResponseDto.toDto(postDtos, new PageInfoDto(posts));
+    }
+
+    //펀딩 참여하기 페이지
+
+    @Transactional(readOnly = true)
+    public PostFindResponseDto participationFunding(Long post_id){
+        Post post = postRepository.findById(post_id).orElseThrow(PostNotFoundException::new);
+        return PostFindResponseDto.toDto(post);
     }
 
 }
