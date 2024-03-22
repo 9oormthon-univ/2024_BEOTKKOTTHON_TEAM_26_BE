@@ -35,4 +35,15 @@ public class PostService {
         return PostFindAllWithPagingResponseDto.toDto(postWithDto, new PageInfoDto(posts));
     }
 
+    //카테고리별 펀딩조회 findAllfundingWithCategory
+
+    @Transactional(readOnly = true)
+    public PostFindAllWithPagingResponseDto searchPost(Long id,Integer page){
+        PageRequest pageRequest = PageRequest.of(page, 10, Sort.by("id").descending());
+        Page<Post> boards = postRepository.findAllByCategoryId(id, pageRequest);
+        List<PostFindAllResponseDto> boardsWithDto = boards.stream().map(PostFindAllResponseDto::toDto)
+                .collect(toList());
+        return PostFindAllWithPagingResponseDto.toDto(boardsWithDto, new PageInfoDto(boards));
+    }
+
 }
