@@ -37,10 +37,10 @@ public class PostController {
         return Response.success(postService.searchPost(category_id, page));
     }
 
-//    @PostMapping("/status")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Response findmyfunding(@PathVariable Long member_id, @RequestParam(defaultValue = "0") Integer page){
-//        return Response.success(postService.searchMyFundedPosts(member_id, page));
-//    }
+    @GetMapping("/status/{member_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response searchMyFundedPosts(@PathVariable Long member_id, @RequestParam(defaultValue = "0") Integer page){
+        return Response.success(postService.searchMyFundedPosts(member_id, page));
+    }
 
 }
