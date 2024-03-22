@@ -68,16 +68,14 @@ public class Post {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Funded_post> fundedPost = new ArrayList<>();
 
     public Post(Long id, String img_url, String title, String explanation,
                 int target_amount, boolean target_complete, Date fund_start_date,
                 Date fund_end_date, String market_place, String fund_company,
-                int current_amount, int discount, int category_id, int fund_people, LocalDateTime createdAt) {
+                int current_amount, int discount, Category category,
+                int fund_people, LocalDateTime createdAt, List<Funded_post> fundedPost) {
         this.id = id;
         this.img_url = img_url;
         this.title = title;
@@ -92,5 +90,8 @@ public class Post {
         this.discount = discount;
         this.fund_people = fund_people;
         this.createdAt = createdAt;
+        this.category = category;
+        this.fundedPost = fundedPost;
+
     }
 }

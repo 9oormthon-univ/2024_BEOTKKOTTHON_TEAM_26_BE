@@ -22,5 +22,9 @@ public class Funded_post {
     @JoinColumn(name="post_id")
     private Post post;
 
-
+    public Funded_post(Long id, Member member, Post post) {
+        this.id = id;
+        this.member = member;
+        this.post = post;
+    }
 }

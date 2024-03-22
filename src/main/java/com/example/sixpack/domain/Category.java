@@ -20,11 +20,12 @@ public class Category {
     @Column(nullable = false, unique = true)
     private String category_name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Post> post = new ArrayList<>();
 
-    public Category(Long id, String category_name) {
+    public Category(Long id, String category_name, List<Post> post) {
         this.id = id;
         this.category_name = category_name;
+        this.post = post;
     }
 }
