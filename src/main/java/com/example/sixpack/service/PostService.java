@@ -3,10 +3,7 @@ package com.example.sixpack.service;
 import com.example.sixpack.config.exception.exception.PostNotFoundException;
 import com.example.sixpack.domain.Member;
 import com.example.sixpack.domain.Post;
-import com.example.sixpack.dto.post.PageInfoDto;
-import com.example.sixpack.dto.post.PostFindAllResponseDto;
-import com.example.sixpack.dto.post.PostFindAllWithPagingResponseDto;
-import com.example.sixpack.dto.post.PostFindResponseDto;
+import com.example.sixpack.dto.post.*;
 import com.example.sixpack.repository.MemberRepository;
 import com.example.sixpack.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +48,6 @@ public class PostService {
 
     //내가참여한 펀딩조회
     @Transactional(readOnly = true)
-
     public PostFindAllWithPagingResponseDto searchMyFundedPosts(Long memberId, Integer page) {
         Member member = memberRepository.findById(memberId).orElseThrow(PostNotFoundException::new);
         PageRequest pageRequest = PageRequest.of(page, 10, Sort.by("id").descending());
@@ -68,6 +64,13 @@ public class PostService {
     public PostFindResponseDto participationFunding(Long post_id){
         Post post = postRepository.findById(post_id).orElseThrow(PostNotFoundException::new);
         return PostFindResponseDto.toDto(post);
+    }
+
+    //실시간 펀딩 현황/완료-상세메뉴 정보-결제
+    @Transactional(readOnly = true)
+    public PostfundingResponseDto BuyFundedPosts(Long post_id){
+        Post post = postRepository.findById(post_id).orElseThrow(PostNotFoundException::new);
+        return PostfundingResponseDto.toDto(post);
     }
 
 }

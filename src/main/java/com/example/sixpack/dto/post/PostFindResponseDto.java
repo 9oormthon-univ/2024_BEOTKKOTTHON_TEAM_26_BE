@@ -17,6 +17,7 @@ public class PostFindResponseDto {
     private Long id;
     private String category_name;
     private String title;
+    private String img_url;
     private String explanation;
     private Date fund_start_date;
     private Date fund_end_date;
@@ -28,6 +29,7 @@ public class PostFindResponseDto {
                 post.getId(),
                 post.getCategory().getCategory_name(),
                 post.getTitle(),
+                post.getImg_url(),
                 post.getExplanation(),
                 post.getFund_start_date(),
                 post.getFund_end_date(),

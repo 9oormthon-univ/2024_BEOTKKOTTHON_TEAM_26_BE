@@ -64,8 +64,6 @@ public class Post {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column(nullable = false)
-    private int fund_people;
 
     @CreatedDate
     @Column(updatable = false)
@@ -85,7 +83,7 @@ public class Post {
                 int target_amount, boolean target_complete, Date fund_start_date,
                 Date fund_end_date, String market_place, String fund_company,
                 int current_amount, int discount, Category category,
-                int fund_people, LocalDateTime createdAt, List<Funded_post> fundedPost) {
+                LocalDateTime createdAt, List<Funded_post> fundedPost) {
         this.id = id;
         this.img_url = img_url;
         this.title = title;
@@ -98,7 +96,6 @@ public class Post {
         this.fund_company = fund_company;
         this.current_amount = current_amount;
         this.discount = discount;
-        this.fund_people = fund_people;
         this.createdAt = createdAt;
         this.category = category;
         this.fundedPost = fundedPost;
