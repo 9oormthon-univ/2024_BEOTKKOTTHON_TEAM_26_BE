@@ -39,6 +39,7 @@ public class PostService {
         Page<Post> posts = postRepository.findAll(pageRequest);
         List<PostFindAllResponseDto> postWithDto = posts.stream().map(PostFindAllResponseDto::toDto)
                 .collect(toList());
+
         return PostFindAllWithPagingResponseDto.toDto(postWithDto, new PageInfoDto(posts));
     }
 
@@ -74,18 +75,20 @@ public class PostService {
         Post post = postRepository.findById(post_id).orElseThrow(PostNotFoundException::new);
         return PostFindResponseDto.toDto(post);
     }
-
-    //실시간 펀딩 현황/완료-상세메뉴 정보- 결제
+    // 실시간 펀딩 현황/완료-상세메뉴 정보- 결제
     @Transactional(readOnly = true)
-    public PostfundingResponseDto BuyFundedPosts(Long post_id){
-
-        List<Linked_image> linked_images = linkedImageRepository.findByPostId(post_id);
+    public PostfundingResponseDto BuyFundedPosts(Long post_id) {
+        List<Linked_image> linkedImages = linkedImageRepository.findByPostId(post_id);
         Post post = postRepository.findById(post_id).orElseThrow(PostNotFoundException::new);
-        System.out.println(linked_images);
-        System.out.println("***********************************");
-        return PostfundingResponseDto.toDto(post, linked_images);
-
+        return PostfundingResponseDto.toDto(post, linkedImages);
     }
+
+//    @Transactional(readOnly = true)
+//    public PostfundingResponseDto BuyFundedPosts(Long post_id) {
+//        List<Linked_image> linkedImages = linkedImageRepository.findByPostId(post_id);
+//        Post post = postRepository.findById(post_id).orElseThrow(PostNotFoundException::new);
+//        return PostfundingResponseDto.toDto(post, linkedImages);
+//    }
 
 //    //게시글 등록
 //    @Transactional

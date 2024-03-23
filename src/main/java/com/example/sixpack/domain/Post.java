@@ -38,12 +38,10 @@ public class Post {
     private boolean target_complete;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fund_start_date;
+    private String fund_start_date;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fund_end_date;
+    private String fund_end_date;
 
     @Column(nullable = false)
     private int market_place; // 나와 가게사이의 거리
@@ -56,7 +54,7 @@ public class Post {
 
 
     @Column(nullable = false)
-    private int current_amount;
+    private int percent;
 
     @Column(nullable = false)
     private int discount;
@@ -79,17 +77,13 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Linked_image> linkedImages = new ArrayList<>();
-    public Member getMember() {
-        if (fundedPost != null && !fundedPost.isEmpty()) {
-            return fundedPost.get(0).getMember();
-        }
-        return null;
-    }
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HashTag> hashTags = new ArrayList<>();
     public Post(Long id, String img_url, String title, String explanation, int headcount,
-                int target_amount, boolean target_complete, Date fund_start_date,
-                Date fund_end_date, int market_place, String fund_company,
-                int current_amount, int discount, Category category,
+                int target_amount, boolean target_complete, String fund_start_date,
+                String fund_end_date, int market_place, String fund_company,
+                int percent, int discount, Category category,
                 LocalDateTime createdAt, List<Funded_post> fundedPost, List<Linked_image> linked_images, String company_introduce ) {
         this.id = id;
         this.img_url = img_url;
@@ -101,7 +95,7 @@ public class Post {
         this.fund_end_date = fund_end_date;
         this.market_place = market_place;
         this.fund_company = fund_company;
-        this.current_amount = current_amount;
+        this.percent = percent;
         this.discount = discount;
         this.createdAt = createdAt;
         this.category = category;
