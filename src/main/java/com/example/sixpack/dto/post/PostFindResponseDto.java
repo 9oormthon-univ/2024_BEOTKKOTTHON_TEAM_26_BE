@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @NoArgsConstructor
@@ -14,16 +15,24 @@ import java.time.LocalDateTime;
 public class PostFindResponseDto {
 
     private Long id;
+    private String category_name;
     private String title;
     private String explanation;
-    private LocalDateTime createAt;
+    private Date fund_start_date;
+    private Date fund_end_date;
+    private int headcount;
+    private int discount;
 
     public static PostFindResponseDto toDto(Post post) {
         return new PostFindResponseDto(
                 post.getId(),
+                post.getCategory().getCategory_name(),
                 post.getTitle(),
                 post.getExplanation(),
-                post.getCreatedAt()
+                post.getFund_start_date(),
+                post.getFund_end_date(),
+                post.getHeadcount(),
+                post.getDiscount()
         );
     }
 

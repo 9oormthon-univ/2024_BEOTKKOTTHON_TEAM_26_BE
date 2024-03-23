@@ -37,10 +37,18 @@ public class PostController {
         return Response.success(postService.searchPost(category_id, page));
     }
 
-//    @PostMapping("/status")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Response findmyfunding(@PathVariable Long member_id, @RequestParam(defaultValue = "0") Integer page){
-//        return Response.success(postService.searchMyFundedPosts(member_id, page));
-//    }
+    @GetMapping("/status/{member_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response searchMyFundedPosts(@PathVariable Long member_id, @RequestParam(defaultValue = "0") Integer page){
+        return Response.success(postService.searchMyFundedPosts(member_id, page));
+    }
+
+
+    //펀딩참여하기페이지
+    @GetMapping("/{post_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response participationFunding(@PathVariable Long post_id){
+        return Response.success(postService.participationFunding(post_id));
+    }
 
 }
