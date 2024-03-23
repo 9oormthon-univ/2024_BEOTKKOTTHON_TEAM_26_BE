@@ -22,6 +22,7 @@ public class PostFindAllResponseDto {
     private String fund_end_date;
     private int market_place;
     private List<String> HashTagnames;
+    private int percent;
 
     public static PostFindAllResponseDto toDto(Post post) {
         List<String> hashTagNames = post.getHashTags().stream()
@@ -35,7 +36,8 @@ public class PostFindAllResponseDto {
                 post.getExplanation(),
                 post.getFund_end_date(),
                 post.getMarket_place(),
-                hashTagNames
+                hashTagNames,
+                post.getPercent()
         );
     }
 }
