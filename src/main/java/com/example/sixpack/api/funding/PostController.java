@@ -25,6 +25,13 @@ public class PostController {
 //        return Response.success();
 //    }
 
+//    @PostMapping("/participation")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Response participationPost(@RequestBody Long member_Id, @RequestBody Long post_Id) {
+//        PostService.participationPost(member_Id,post_Id);
+//        return Response.success();
+//    }
+
 
 //    음식 펀딩 산세 페이지1(전체펀딩조회)
     @GetMapping("/all")
@@ -33,13 +40,19 @@ public class PostController {
         return Response.success(postService.findAllfunding(page));
     }
 
-
     //음식 펀딩 상세 페이지1(카테고리별 조회)
     @GetMapping("/all/{category_id}")
     @ResponseStatus(HttpStatus.OK)
     public Response searchPost(@PathVariable Long category_id,@RequestParam(defaultValue = "0") Integer page){
         return Response.success(postService.searchPost(category_id, page));
     }
+
+//    //음식 펀딩 상세 페이지1(카테고리별 조회)
+//    @GetMapping("/all/distance/{market_place}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public Response searchPost(@PathVariable int market_place,@RequestParam(defaultValue = "0") Integer page){
+//        return Response.success(postService.searchDistance(market_place, page));
+//    }
 
     //실시간 펀딩 현황/완료
     @GetMapping("/status/{member_id}")

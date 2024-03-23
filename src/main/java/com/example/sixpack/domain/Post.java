@@ -46,10 +46,14 @@ public class Post {
     private Date fund_end_date;
 
     @Column(nullable = false)
-    private String market_place;
+    private int market_place; // 나와 가게사이의 거리
 
     @Column(nullable = false)
     private String fund_company;
+
+    @Column(nullable = false)
+    private String company_introduce;
+
 
     @Column(nullable = false)
     private int current_amount;
@@ -72,6 +76,9 @@ public class Post {
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Funded_post> fundedPost = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Linked_image> linkedImages = new ArrayList<>();
     public Member getMember() {
         if (fundedPost != null && !fundedPost.isEmpty()) {
             return fundedPost.get(0).getMember();
@@ -81,9 +88,9 @@ public class Post {
 
     public Post(Long id, String img_url, String title, String explanation, int headcount,
                 int target_amount, boolean target_complete, Date fund_start_date,
-                Date fund_end_date, String market_place, String fund_company,
+                Date fund_end_date, int market_place, String fund_company,
                 int current_amount, int discount, Category category,
-                LocalDateTime createdAt, List<Funded_post> fundedPost) {
+                LocalDateTime createdAt, List<Funded_post> fundedPost, List<Linked_image> linked_images, String company_introduce ) {
         this.id = id;
         this.img_url = img_url;
         this.title = title;
@@ -100,5 +107,7 @@ public class Post {
         this.category = category;
         this.fundedPost = fundedPost;
         this.headcount = headcount;
+        this.linkedImages = linked_images;
+        this.company_introduce = company_introduce;
     }
 }

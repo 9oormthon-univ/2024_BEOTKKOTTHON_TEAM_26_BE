@@ -17,12 +17,14 @@ public class PostFindAllResponseDto {
     private String img_url;
     private String explanation;
     private Date fund_start_date;
+    private int market_place;
 
     public static PostFindAllResponseDto toDto(Post post){
         return new PostFindAllResponseDto(post.getId(),
                 post.getTitle(),
                 post.getImg_url(),
                 post.getExplanation(),
-                post.getFund_start_date());
+                post.getFund_start_date(),
+                post.getMarket_place());
     }
 }
