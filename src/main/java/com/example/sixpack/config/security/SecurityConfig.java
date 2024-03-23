@@ -48,9 +48,7 @@ public class SecurityConfig {
                 // 로그인, 회원가입 API 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
                 .authorizeHttpRequests(request ->
                         request.requestMatchers("/auth/**").permitAll()
-                                .requestMatchers(HttpMethod.GET,"/funding/all").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                                .requestMatchers(HttpMethod.GET,"/funding/{category_id}").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                                .requestMatchers(HttpMethod.GET,"/funding/{post_id}").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                                .requestMatchers("/funding/**").permitAll()
                                 .anyRequest().authenticated()
                 )// 나머지 API 는 전부 인증 필요
 
