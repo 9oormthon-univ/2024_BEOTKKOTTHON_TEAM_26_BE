@@ -21,8 +21,6 @@ public class PostFindResponseDto {
     private String explanation;
     private String fund_start_date;
     private String fund_end_date;
-    private int headcount;
-    private int discount;
 
     public static PostFindResponseDto toDto(Post post) {
         return new PostFindResponseDto(
@@ -32,9 +30,7 @@ public class PostFindResponseDto {
                 post.getImg_url(),
                 post.getExplanation(),
                 post.getFund_start_date(),
-                post.getFund_end_date(),
-                post.getHeadcount(),
-                post.getDiscount()
+                post.getFund_end_date()
         );
     }
 
