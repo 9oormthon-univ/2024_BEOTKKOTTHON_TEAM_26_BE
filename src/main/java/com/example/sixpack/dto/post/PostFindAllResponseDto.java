@@ -14,10 +14,15 @@ import java.util.Date;
 public class PostFindAllResponseDto {
     private Long id;
     private String title;
+    private String img_url;
     private String explanation;
     private Date fund_start_date;
 
     public static PostFindAllResponseDto toDto(Post post){
-        return new PostFindAllResponseDto(post.getId(), post.getTitle(), post.getExplanation(), post.getFund_start_date());
+        return new PostFindAllResponseDto(post.getId(),
+                post.getTitle(),
+                post.getImg_url(),
+                post.getExplanation(),
+                post.getFund_start_date());
     }
 }

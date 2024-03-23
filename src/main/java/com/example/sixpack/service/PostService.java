@@ -51,7 +51,6 @@ public class PostService {
 
     //내가참여한 펀딩조회
     @Transactional(readOnly = true)
-
     public PostFindAllWithPagingResponseDto searchMyFundedPosts(Long memberId, Integer page) {
         Member member = memberRepository.findById(memberId).orElseThrow(PostNotFoundException::new);
         PageRequest pageRequest = PageRequest.of(page, 10, Sort.by("id").descending());

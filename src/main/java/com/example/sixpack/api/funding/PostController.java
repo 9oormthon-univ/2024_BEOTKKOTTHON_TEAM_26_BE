@@ -43,6 +43,11 @@ public class PostController {
         return Response.success(postService.searchMyFundedPosts(member_id, page));
     }
 
+//    @GetMapping("/status/{post_id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public Response BuyFundedPosts(@PathVariable Long post_id, @RequestParam(defaultValue = "0") Integer page){
+//        return Response.success(postService.BuyFundedPosts(post_id, page));
+//    }
 
     //펀딩참여하기페이지
     @GetMapping("/{post_id}")

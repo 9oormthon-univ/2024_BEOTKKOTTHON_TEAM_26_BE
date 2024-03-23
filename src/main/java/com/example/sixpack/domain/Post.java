@@ -64,8 +64,6 @@ public class Post {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column(nullable = false)
-    private int fund_people;
 
     @CreatedDate
     @Column(updatable = false)
