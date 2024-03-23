@@ -22,6 +22,7 @@ public class PostfundingResponseDto {
     private String fund_end_date;
     private String fund_company;
     private String company_introduce;
+    private int percent;
     private List<String> linkedImages; // Linked_image 값을 리스트로 반환하는 필드 추가
 
     public static PostfundingResponseDto toDto(Post post, List<Linked_image> linkedImages) {
@@ -36,6 +37,7 @@ public class PostfundingResponseDto {
                 post.getFund_end_date(),
                 post.getFund_company(),
                 post.getCompany_introduce(),
+                post.getPercent(),
                 imageUrls
         );
     }
