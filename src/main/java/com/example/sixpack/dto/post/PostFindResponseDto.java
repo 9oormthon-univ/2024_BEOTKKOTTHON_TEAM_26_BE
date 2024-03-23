@@ -19,8 +19,8 @@ public class PostFindResponseDto {
     private String title;
     private String img_url;
     private String explanation;
-    private Date fund_start_date;
-    private Date fund_end_date;
+    private String fund_start_date;
+    private String fund_end_date;
     private int headcount;
     private int discount;
 
