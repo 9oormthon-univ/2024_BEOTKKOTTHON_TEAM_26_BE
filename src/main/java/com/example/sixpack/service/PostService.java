@@ -74,4 +74,15 @@ public class PostService {
         return PostfundingResponseDto.toDto(post);
     }
 
+    //게시글 등록
+//    @Transactional
+//    public void createBoard(PostCreateRequestDto req, Member member){
+//        List<Image> images = req.getImages().stream()
+//                .map(i -> new Image(i.getOriginalFilename()))
+//                .collect(toList());
+//        Board board = new Board(req.getTitle(), req.getContent(), member, images);
+//        boardRepository.save(board);
+//        uploadImages(board.getImages(), req.getImages());
+//    }
+
 }
