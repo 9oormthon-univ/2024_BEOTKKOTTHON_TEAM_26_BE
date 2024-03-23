@@ -50,7 +50,7 @@ public class PostController {
 
 
     //실시간 펀딩 현황/완료-상세메뉴 정보-결제
-    @GetMapping("/status/{post_id}")
+    @GetMapping("/status/details/{post_id}")
     @ResponseStatus(HttpStatus.OK)
     public Response BuyFundedPosts(@PathVariable Long post_id){
         return Response.success(postService.BuyFundedPosts(post_id));

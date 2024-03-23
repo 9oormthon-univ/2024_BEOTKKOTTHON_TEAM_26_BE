@@ -1,5 +1,6 @@
 package com.example.sixpack.service;
 
+import com.example.sixpack.config.exception.exception.MemberNotFoundException;
 import com.example.sixpack.config.exception.exception.PostNotFoundException;
 import com.example.sixpack.domain.Member;
 import com.example.sixpack.domain.Post;
@@ -49,7 +50,7 @@ public class PostService {
     //내가참여한 펀딩조회
     @Transactional(readOnly = true)
     public PostFindAllWithPagingResponseDto searchMyFundedPosts(Long memberId, Integer page) {
-        Member member = memberRepository.findById(memberId).orElseThrow(PostNotFoundException::new);
+        Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
         PageRequest pageRequest = PageRequest.of(page, 10, Sort.by("id").descending());
         Page<Post> posts = postRepository.findAllByFundedPostMemberId(memberId, pageRequest);
         List<PostFindAllResponseDto> postDtos = posts.getContent().stream()
@@ -66,7 +67,7 @@ public class PostService {
         return PostFindResponseDto.toDto(post);
     }
 
-    //실시간 펀딩 현황/완료-상세메뉴 정보-결제
+    //실시간 펀딩 현황/완료-상세메뉴 정보- 결제
     @Transactional(readOnly = true)
     public PostfundingResponseDto BuyFundedPosts(Long post_id){
         Post post = postRepository.findById(post_id).orElseThrow(PostNotFoundException::new);

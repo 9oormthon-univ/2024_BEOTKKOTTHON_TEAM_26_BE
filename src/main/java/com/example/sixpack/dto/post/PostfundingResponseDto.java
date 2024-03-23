@@ -1,6 +1,7 @@
 package com.example.sixpack.dto.post;
 
 
+import com.example.sixpack.domain.Member;
 import com.example.sixpack.domain.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
